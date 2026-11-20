@@ -1,0 +1,81 @@
+.bulkPanel {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2c3042; /* Тёмно-синий цвет, как у логотипа */
+  padding: 0.75rem 0.75rem 0.75rem 1.5rem;
+  border-radius: var(--radius-big);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bulkText {
+  font-weight: var(--font-weight-semibold);
+  color: rgba(255, 255, 255, 0.8); /* Белый текст с легкой прозрачностью */
+  font-size: var(--small-font-size);
+}
+
+.bulkText span {
+  color: #fff; /* Ярко-белый для цифры */
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+  margin-left: 0.5rem;
+}
+
+.deleteBtn {
+  background-color: var(--deals-lost-color); /* Ярко-красная кнопка */
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font);
+  font-size: var(--small-font-size);
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); /* Красное свечение */
+}
+
+.deleteBtn:hover:not(:disabled) {
+  background-color: #dc2626; /* Чуть темнее при наведении */
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+}
+
+.deleteBtn:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+.deleteBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Иконка корзины в кнопке */
+.deleteBtn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}

@@ -1,0 +1,78 @@
+.panel {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background-color: #2c3042;
+  padding: 0.75rem 0.75rem 0.75rem 1.5rem;
+  border-radius: var(--radius-big);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Для таблицы (по центру снизу) */
+.fixed {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* НОВЫЙ КЛАСС: Для канбана (справа снизу, чтобы не мешать) */
+.fixedRight {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  animation: slideLeft 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.text {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.text span {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+  margin-left: 0.5rem;
+}
+
+.deleteBtn {
+  background-color: var(--deals-lost-color);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.deleteBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.deleteBtn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translate(-50%, 20px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}

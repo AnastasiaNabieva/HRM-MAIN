@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Candidate {
+  id              String     @id @default(cuid())
+  firstName       String
+  lastName        String
+  email           String     @unique
+  phone           String?
+  avatarUrl       String?
+  position        String?
+  location        String?
+  lat             Float?
+  lng             Float?
+  salary          Int?
+  source          String?
+  stageId         String?
+  stage           Stage?     @relation(fields: [stageId], references: [id], onDelete: SetNull)
+  positionInStage Int?
+  university      String?
+  gender          String?
+  birthDate       String?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  activities      Activity[]
+
+  @@index([stageId, positionInStage])
+}
+
+model Stage {
+  id         String      @id @default(cuid())
+  title      String
+  order      Int
+  color      String?
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  candidates Candidate[]
+}
+
+model Activity {
+  id          String    @id @default(cuid())
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  type        String
+  text        String?
+  createdAt   DateTime  @default(now())
+
+  @@index([candidateId, createdAt])
+}
